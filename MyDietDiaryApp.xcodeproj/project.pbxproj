@@ -16,6 +16,9 @@
 		9B93FCC02779F9E000803088 /* MyDietDiaryAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCBF2779F9E000803088 /* MyDietDiaryAppTests.swift */; };
 		9B93FCCA2779F9E000803088 /* MyDietDiaryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCC92779F9E000803088 /* MyDietDiaryAppUITests.swift */; };
 		9B93FCCC2779F9E000803088 /* MyDietDiaryAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCCB2779F9E000803088 /* MyDietDiaryAppUITestsLaunchTests.swift */; };
+		9B93FCD92779FACB00803088 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCD82779FACB00803088 /* MainTabBarController.swift */; };
+		9B93FCDB2779FBD900803088 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCDA2779FBD900803088 /* CalenderViewController.swift */; };
+		9B93FCDD2779FBFF00803088 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCDC2779FBFF00803088 /* GraphViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		9B93FCC52779F9E000803088 /* MyDietDiaryAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDietDiaryAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B93FCC92779F9E000803088 /* MyDietDiaryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDietDiaryAppUITests.swift; sourceTree = "<group>"; };
 		9B93FCCB2779F9E000803088 /* MyDietDiaryAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDietDiaryAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9B93FCD82779FACB00803088 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		9B93FCDA2779FBD900803088 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		9B93FCDC2779FBFF00803088 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 				9B93FCB12779F9E000803088 /* Assets.xcassets */,
 				9B93FCB32779F9E000803088 /* LaunchScreen.storyboard */,
 				9B93FCB62779F9E000803088 /* Info.plist */,
+				9B93FCD82779FACB00803088 /* MainTabBarController.swift */,
+				9B93FCDA2779FBD900803088 /* CalenderViewController.swift */,
+				9B93FCDC2779FBFF00803088 /* GraphViewController.swift */,
 			);
 			path = MyDietDiaryApp;
 			sourceTree = "<group>";
@@ -258,8 +267,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B93FCDB2779FBD900803088 /* CalenderViewController.swift in Sources */,
 				9B93FCAD2779F9DF00803088 /* ViewController.swift in Sources */,
 				9B93FCA92779F9DF00803088 /* AppDelegate.swift in Sources */,
+				9B93FCDD2779FBFF00803088 /* GraphViewController.swift in Sources */,
+				9B93FCD92779FACB00803088 /* MainTabBarController.swift in Sources */,
 				9B93FCAB2779F9DF00803088 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +459,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +469,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -475,6 +488,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +498,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
