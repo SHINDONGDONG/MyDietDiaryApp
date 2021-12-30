@@ -12,7 +12,7 @@
         <!--Item 2-->
         <scene sceneID="GJC-8c-cC9">
             <objects>
-                <viewController id="oW0-I0-ZFx" customClass="CalenderViewController" customModule="MyDietDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oW0-I0-ZFx" customClass="GraphViewController" customModule="MyDietDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MzK-YR-QYC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,18 +28,52 @@
         <!--Item 1-->
         <scene sceneID="X5M-KV-2yx">
             <objects>
-                <viewController id="gmc-xl-8WF" customClass="GraphViewController" customModule="MyDietDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gmc-xl-8WF" customClass="CalenderViewController" customModule="MyDietDiaryApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MQa-hX-zTW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zid-y5-Uci" customClass="FSCalendar">
+                                <rect key="frame" x="20" y="194" width="374" height="519"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG3-sv-gkX">
+                                <rect key="frame" x="344" y="743" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.81176470590000005" green="0.56470588239999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="41U-id-5DW"/>
+                                    <constraint firstAttribute="width" constant="50" id="Ds3-Z3-cun"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="✚">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="0.0"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="addButtonNV:" destination="gmc-xl-8WF" eventType="touchUpInside" id="v0E-U1-aFr"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="FJr-N1-5Ho"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FJr-N1-5Ho" firstAttribute="bottom" secondItem="cG3-sv-gkX" secondAttribute="bottom" constant="20" id="JoI-0L-V2M"/>
+                            <constraint firstItem="FJr-N1-5Ho" firstAttribute="trailing" secondItem="cG3-sv-gkX" secondAttribute="trailing" constant="20" id="YHg-EN-tye"/>
+                            <constraint firstItem="zid-y5-Uci" firstAttribute="leading" secondItem="FJr-N1-5Ho" secondAttribute="leading" constant="20" id="ohj-Oy-Ajz"/>
+                            <constraint firstItem="FJr-N1-5Ho" firstAttribute="trailing" secondItem="zid-y5-Uci" secondAttribute="trailing" constant="20" id="olQ-BT-r1y"/>
+                            <constraint firstItem="zid-y5-Uci" firstAttribute="top" secondItem="FJr-N1-5Ho" secondAttribute="top" constant="150" id="tko-Vd-YRo"/>
+                            <constraint firstItem="FJr-N1-5Ho" firstAttribute="bottom" secondItem="zid-y5-Uci" secondAttribute="bottom" constant="100" id="yep-8s-JWk"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="VIL-di-aIt"/>
+                    <connections>
+                        <outlet property="addButton" destination="cG3-sv-gkX" id="rM9-yw-q5N"/>
+                        <outlet property="calenarView" destination="zid-y5-Uci" id="Utx-Yr-DGO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IM6-ka-D3T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1174" y="785"/>
+            <point key="canvasLocation" x="-1172.4637681159422" y="784.82142857142856"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="a01-j4-xBJ">
@@ -61,8 +95,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
