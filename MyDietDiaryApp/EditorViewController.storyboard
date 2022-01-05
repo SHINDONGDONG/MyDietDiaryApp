@@ -57,7 +57,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="HGP-Tr-TBc"/>
                     <connections>
-                        <outlet property="inputWeightTextField" destination="Nps-tW-0CD" id="sWb-lT-sbR"/>
+                        <outlet property="inputDateTextField" destination="HYj-YA-w8E" id="wiy-gZ-tB4"/>
+                        <outlet property="inputWeightTextField" destination="HYj-YA-w8E" id="raG-ZC-56I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

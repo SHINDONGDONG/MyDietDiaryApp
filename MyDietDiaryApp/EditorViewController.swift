@@ -9,19 +9,38 @@ import Foundation
 import UIKit
 
 class EditorViewController: UIViewController {
+    //Date의 TextField를 변수로 선언한다.
+    @IBOutlet weak var inputDateTextField: UITextField!
     //체중의 TextField를 변수로 선언한다.
     @IBOutlet weak var inputWeightTextField: UITextField!
+    
+    //datePiker를 이용하여 날짜를 항상 같은 설정으로 할 수 있게 만들어준다.
+    var datePiker: UIDatePicker {
+        //datePiker를 인스턴스화 시켜준다.
+        let datePiker: UIDatePicker = UIDatePicker()
+        //데이터 피커모드를 데이터를 지정한다.
+        datePiker.datePickerMode = .date
+        //데이터피커의 타임존을 현재를 지정한다.
+        datePiker.timeZone = .current
+        //piker 스타이릉ㄹ wheels로 지정
+        datePiker.preferredDatePickerStyle = .wheels
+        //locale은 ja-JP는 일본 로케일
+        datePiker.locale = Locale(identifier: "ja-JP")
+        datePiker.addTarget(self, action: #selector(didChangeDate), for: .valueChanged)
+        return datePiker
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureWeightTextField()
+        configDateTextField()
     }
     
     @objc func didTapDone(){
         view.endEditing(true)
     }
-    
-    func configureWeightTextField(){
+
+    var toolBar:UIToolbar {
         //toolbarRect의 사이즈를 정의한다.
         let toolBarRect = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35)
         //정의한 사이즈를 toolbar에 추가해준다.
@@ -31,6 +50,30 @@ class EditorViewController: UIViewController {
         //toolbar에 doneItem을 []로 셋팅해준다(복수의 아이템들이 들어올 수 있기에)
         toolBar.setItems([doneItem], animated: true)
         //inputweightTextField에 악세서리로 추가해준다.
+        return toolBar
+    }
+    
+    var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeZone = .current
+        dateFormatter.locale = Locale(identifier: "ja-JP")
+        return dateFormatter
+    }
+    
+    @objc func didChangeDate(picker: UIDatePicker) {
+        inputDateTextField.text = dateFormatter.string(from: picker.date)
+    }
+    
+    
+    func configureWeightTextField(){
         inputWeightTextField.inputAccessoryView = toolBar
     }
+    
+    func configDateTextField(){
+        inputDateTextField.inputView = datePiker
+        inputDateTextField.inputAccessoryView = toolBar
+        inputDateTextField.text = dateFormatter.string(from: Date())
+    }
+    
 }
