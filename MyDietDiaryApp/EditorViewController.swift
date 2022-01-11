@@ -7,12 +7,23 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class EditorViewController: UIViewController {
     //Date의 TextField를 변수로 선언한다.
     @IBOutlet weak var inputDateTextField: UITextField!
     //체중의 TextField를 변수로 선언한다.
     @IBOutlet weak var inputWeightTextField: UITextField!
+    //보존버튼을 인스턴스화
+    @IBOutlet weak var saveButton: UIButton!
+    //보존버튼을 누르면 동작이 취해지도록 액션버튼을 만들어준다.
+    @IBAction func saveButton(_ sender: UIButton) {
+       saveRecorde()
+    }
+    
+    //realm데이터를 선언한것을 인스턴스화하여 저장할것임
+    var record = WeightRecored()
+    
     
     //datePiker를 이용하여 날짜를 항상 같은 설정으로 할 수 있게 만들어준다.
     var datePiker: UIDatePicker {
@@ -34,6 +45,10 @@ class EditorViewController: UIViewController {
         super.viewDidLoad()
         configureWeightTextField()
         configDateTextField()
+        configureSaveButton()
+        let realm = try! Realm()
+        let firestRecord = realm.objects(WeightRecored.self).first
+        print("firstrecord : \(String(describing:firestRecord))")
     }
     
     @objc func didTapDone(){
@@ -74,6 +89,30 @@ class EditorViewController: UIViewController {
         inputDateTextField.inputView = datePiker
         inputDateTextField.inputAccessoryView = toolBar
         inputDateTextField.text = dateFormatter.string(from: Date())
+    }
+    
+    func configureSaveButton(){
+        saveButton.layer.cornerRadius = 5
+    }
+    
+    func saveRecorde(){
+        let realm = try! Realm()
+        try! realm.write{
+            //inputdatetextfield에 데이터가 있고, date를 변환했을때만 데이터갱신
+            if let dateText = inputDateTextField.text,
+               let date = dateFormatter.date(from: dateText){
+                record.date = date
+            }
+            //inputweighttextfield에 데이터가 있고 weight를 double형으로 변환했을때만 갱신.
+            if let weightText = inputWeightTextField.text,
+               let weight = Double(weightText){
+                record.weight = weight
+            }
+            //realm에 record를 추가해준다.
+            realm.add(record)
+        }
+        //자동적으로 체중화면을 닫는다.
+        dismiss(animated: true)
     }
     
 }
