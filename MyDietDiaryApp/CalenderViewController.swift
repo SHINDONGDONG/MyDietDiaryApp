@@ -13,11 +13,7 @@ class CalenderViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var calenarView: FSCalendar!
     @IBAction func addButtonNV(_ sender: UIButton) {
-        let storyboard = UIStoryboard.init(name: "EditorViewController", bundle: nil)
-        guard let editorViewController =
-                storyboard.instantiateViewController(withIdentifier: "EditorViewController") as?
-                EditorViewController else {return}
-        present(editorViewController, animated: true)
+        transitionToDeitorView()
     }
     
     var recordList: [WeightRecored] = []
@@ -30,6 +26,8 @@ class CalenderViewController: UIViewController {
         configureButton()
         //FSCalendardatasource 유효화
         calenarView.dataSource = self
+        //FSCalendarDelegate 유효화
+        calenarView.delegate = self
     }
     //표시될때마다 실행한다
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +35,18 @@ class CalenderViewController: UIViewController {
         getrecord()
         calenarView.reloadData()
         
+    }
+    
+    func transitionToDeitorView(with record: WeightRecored? = nil){
+        let storyboard = UIStoryboard.init(name: "EditorViewController", bundle: nil)
+        guard let editorViewController =
+                storyboard.instantiateViewController(withIdentifier: "EditorViewController") as?
+                EditorViewController else {return}
+        //이동시킬 화면에 record의 데이터를 담아준다
+        if let record = record {
+            editorViewController.record = record
+        }
+        present(editorViewController, animated: true)
     }
     
     func configureCalendar(){
@@ -80,5 +90,16 @@ extension CalenderViewController: FSCalendarDataSource {
         let isEqualDate = dateList.contains(date.zeroclock)
         //isEqualdate가 true이면 1개를 아니면 0개를 리턴해준다.
         return isEqualDate ? 1 : 0
+    }
+}
+
+extension CalenderViewController: FSCalendarDelegate {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        //날짜를 선택했을 때 select가 되지않도록 해준다.(색상이변경됨)
+        calendar.deselect(date)
+        //배열에 대해서 임의의 값을 조건을 취득할 때 first where메소드를 사용한다. $0는 배열의 요소의 데이터를 말하는것이며 인수 date와 비교하여 날짜가같으면 등록 아니면 미등록 처리한다.
+        guard let record = recordList.first(where: {$0.date.zeroclock == date.zeroclock}) else {return}
+        transitionToDeitorView(with: record)
+         
     }
 }

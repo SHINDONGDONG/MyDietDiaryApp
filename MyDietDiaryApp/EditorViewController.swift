@@ -46,9 +46,8 @@ class EditorViewController: UIViewController {
         configureWeightTextField()
         configDateTextField()
         configureSaveButton()
-        let realm = try! Realm()
-        let firestRecord = realm.objects(WeightRecored.self).first
-        print("firstrecord : \(String(describing:firestRecord))")
+        print("record : \(record)")
+        
     }
     
     @objc func didTapDone(){
