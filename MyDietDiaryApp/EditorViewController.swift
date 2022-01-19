@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 import RealmSwift
 
+
+protocol EditorViewControllerDelegate {
+    func recordUpdate()
+}
+
 class EditorViewController: UIViewController {
     //Date의 TextField를 변수로 선언한다.
     @IBOutlet weak var inputDateTextField: UITextField!
@@ -23,6 +28,8 @@ class EditorViewController: UIViewController {
     
     //realm데이터를 선언한것을 인스턴스화하여 저장할것임
     var record = WeightRecored()
+    //delegate 프로퍼티
+    var delegate: EditorViewControllerDelegate?
     
     
     //datePiker를 이용하여 날짜를 항상 같은 설정으로 할 수 있게 만들어준다.
@@ -37,6 +44,8 @@ class EditorViewController: UIViewController {
         datePiker.preferredDatePickerStyle = .wheels
         //locale은 ja-JP는 일본 로케일
         datePiker.locale = Locale(identifier: "ja-JP")
+        //보존되어있는 레코드를 넣어준다.
+        datePiker.date = record.date
         datePiker.addTarget(self, action: #selector(didChangeDate), for: .valueChanged)
         return datePiker
     }
@@ -82,12 +91,13 @@ class EditorViewController: UIViewController {
     
     func configureWeightTextField(){
         inputWeightTextField.inputAccessoryView = toolBar
+        inputWeightTextField.text = String(record.weight)
     }
     
     func configDateTextField(){
         inputDateTextField.inputView = datePiker
         inputDateTextField.inputAccessoryView = toolBar
-        inputDateTextField.text = dateFormatter.string(from: Date())
+        inputDateTextField.text = dateFormatter.string(from: record.date)
     }
     
     func configureSaveButton(){
@@ -107,6 +117,9 @@ class EditorViewController: UIViewController {
                let weight = Double(weightText){
                 record.weight = weight
             }
+            
+            //자식 클래스의 델리게이트는 완료됨.
+            delegate?.recordUpdate()
             //realm에 record를 추가해준다.
             realm.add(record)
         }

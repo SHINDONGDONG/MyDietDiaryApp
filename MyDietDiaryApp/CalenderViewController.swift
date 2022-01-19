@@ -46,6 +46,8 @@ class CalenderViewController: UIViewController {
         if let record = record {
             editorViewController.record = record
         }
+        //editor뷰에서 오는 델리게이트를 동기화시켜준다.
+        editorViewController.delegate = self
         present(editorViewController, animated: true)
     }
     
@@ -101,5 +103,12 @@ extension CalenderViewController: FSCalendarDelegate {
         guard let record = recordList.first(where: {$0.date.zeroclock == date.zeroclock}) else {return}
         transitionToDeitorView(with: record)
          
+    }
+}
+
+extension CalenderViewController: EditorViewControllerDelegate {
+    func recordUpdate() {
+        getrecord()
+        calenarView.reloadData()
     }
 }
