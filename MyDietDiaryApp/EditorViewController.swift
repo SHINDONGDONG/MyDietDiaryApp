@@ -26,6 +26,11 @@ class EditorViewController: UIViewController {
        saveRecorde()
     }
     
+    @IBAction func deleteButton(_ sender: UIButton) {
+        deleteRecord()
+    }
+    
+    
     //realm데이터를 선언한것을 인스턴스화하여 저장할것임
     var record = WeightRecored()
     //delegate 프로퍼티
@@ -124,6 +129,30 @@ class EditorViewController: UIViewController {
             realm.add(record)
         }
         //자동적으로 체중화면을 닫는다.
+        dismiss(animated: true)
+    }
+    
+    //실제 삭제처리가되는 메소드
+    func deleteRecord(){
+        //칼렌더를 인스턴스화 시켜준다.
+        let calendar = Calendar(identifier: .gregorian)
+        //0시0분0초 날짜를 대입시켜준다.
+        let startOfDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: record.date)!
+        //23시59분59초 날짜를 대입시켜준다.
+        let endOfdate = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: record.date)!
+        //realm 선언
+        let realm = try! Realm()
+        //NSPredicate를 사용한 조건검색
+        //startofdate 와 endofdate의 사이에있는 데이터를 삭제하는것이다.
+        let recordList = Array(realm.objects(WeightRecored.self).filter("date BETWEEN {%@, %@}",startOfDate,endOfdate))
+        //조회되어 recordList에 담긴 데이터들을 forEach로 돌려 realm.write
+        //realm.delete로 record를 삭제해준다.
+        recordList.forEach({record in try! realm.write{
+            realm.delete(record)
+        }})
+        //delegate의 통지
+        delegate?.recordUpdate()
+        //dismiss로 자동적으로 화면이닫힘
         dismiss(animated: true)
     }
     
