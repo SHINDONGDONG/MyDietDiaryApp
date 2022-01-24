@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		169D9E1C28E61D118002BF9D /* Pods_MyDietDiaryApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B3AD4783A7A752B0E71026 /* Pods_MyDietDiaryApp.framework */; };
 		1AA66ED5B17579E5FDA1BEB3 /* Pods_MyDietDiaryAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6E45962AF6BFD19EBFB58C /* Pods_MyDietDiaryAppTests.framework */; };
+		9B0A13FB279E90A400A58B02 /* GraphDateTitleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A13FA279E90A400A58B02 /* GraphDateTitleFormatter.swift */; };
 		9B31B33027906A0A00741638 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B31B32F27906A0A00741638 /* Date+Extension.swift */; };
 		9B3D30882783AC0A00C3B067 /* WeightRecored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D30872783AC0A00C3B067 /* WeightRecored.swift */; };
 		9B93FCA92779F9DF00803088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93FCA82779F9DF00803088 /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		3291C423E7C8DF48C59175F7 /* Pods-MyDietDiaryApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDietDiaryApp.debug.xcconfig"; path = "Target Support Files/Pods-MyDietDiaryApp/Pods-MyDietDiaryApp.debug.xcconfig"; sourceTree = "<group>"; };
 		65D1182A5BBB69E2396C199C /* Pods-MyDietDiaryApp-MyDietDiaryAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDietDiaryApp-MyDietDiaryAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MyDietDiaryApp-MyDietDiaryAppUITests/Pods-MyDietDiaryApp-MyDietDiaryAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6BEA8A580D6DFF7CED3E8DF7 /* Pods_MyDietDiaryApp_MyDietDiaryAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDietDiaryApp_MyDietDiaryAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B0A13FA279E90A400A58B02 /* GraphDateTitleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDateTitleFormatter.swift; sourceTree = "<group>"; };
 		9B258B7A3509117B9878F72D /* Pods-MyDietDiaryApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDietDiaryApp.release.xcconfig"; path = "Target Support Files/Pods-MyDietDiaryApp/Pods-MyDietDiaryApp.release.xcconfig"; sourceTree = "<group>"; };
 		9B31B32F27906A0A00741638 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9B3D30872783AC0A00C3B067 /* WeightRecored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightRecored.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				9B93FCD82779FACB00803088 /* MainTabBarController.swift */,
 				9B93FCDA2779FBD900803088 /* CalenderViewController.swift */,
 				9B93FCDC2779FBFF00803088 /* GraphViewController.swift */,
+				9B0A13FA279E90A400A58B02 /* GraphDateTitleFormatter.swift */,
 				9BC4A3E0277D9DB700EDCE33 /* EditorViewController.storyboard */,
 				9BC4A3E2277D9E4E00EDCE33 /* EditorViewController.swift */,
 				9B3D30872783AC0A00C3B067 /* WeightRecored.swift */,
@@ -434,6 +437,7 @@
 				9B93FCA92779F9DF00803088 /* AppDelegate.swift in Sources */,
 				9B93FCDD2779FBFF00803088 /* GraphViewController.swift in Sources */,
 				9B93FCD92779FACB00803088 /* MainTabBarController.swift in Sources */,
+				9B0A13FB279E90A400A58B02 /* GraphDateTitleFormatter.swift in Sources */,
 				9B93FCAB2779F9DF00803088 /* SceneDelegate.swift in Sources */,
 				9BC4A3E3277D9E4E00EDCE33 /* EditorViewController.swift in Sources */,
 				9B31B33027906A0A00741638 /* Date+Extension.swift in Sources */,

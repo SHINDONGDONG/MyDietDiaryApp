@@ -19,6 +19,7 @@ class GraphViewController: UIViewController {
         super.viewWillAppear(animated)
         setRecord()
         updateGraph()
+        configureGraph()
     }
     
     //realm을 인스턴스화시켜, 전 데이터를 취득하고 record리스트에 대입하게하고
@@ -48,5 +49,18 @@ class GraphViewController: UIViewController {
         //그래프를 갱신하는 datachaned, datasetchanged를 선언해준다.
         graphView.data?.notifyDataChanged()
         graphView.notifyDataSetChanged()
+    }
+    //그래프 x가 커브로 보일 수 있게 조정하기
+    func configureGraph() {
+        graphView.xAxis.labelPosition = .bottom
+        //방금전 만든 x축의 formatter 클래스를 인스턴스화 시킨다.
+        let titleFormatter = GraphDateTitleFormatter()
+        //graphdatetitleformatter에 넘길 날짜들을 datelist로 담아준다.
+        let dateList = recordList.map({ $0.date })
+        //datelist를 graphdatetitleformatter에 담아준다.
+        titleFormatter.dateList = dateList
+        //graphview의 xAixs의 valueFormatter를 titleFormatter로 대체하면 된다.
+        graphView.xAxis.valueFormatter = titleFormatter
+        
     }
 }
