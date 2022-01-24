@@ -11,8 +11,29 @@ import RealmSwift
 
 class GraphViewController: UIViewController {
     @IBOutlet weak var graphView: LineChartView!
-
+    @IBOutlet weak var startDateTextField: UITextField!
+    @IBOutlet weak var endDateTextField: UITextField!
+    
     var recordList: [WeightRecored] = []
+    
+    //datePickder 메소드를 만들어준다.
+    var datePicker: UIDatePicker {
+        let datePicker: UIDatePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.timeZone = .current
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = Locale(identifier: "ja-JP")
+        return datePicker
+    }
+    
+    //dateFormatter를 만들어준다.
+    var dateFormatter: DateFormatter {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeZone = .current
+        dateFormatter.locale = Locale(identifier: "ja-JP")
+        return dateFormatter
+    }
     
     //그래프가 업데이트 될 때 마다 갱신하고싶기 때문에 viewWillAppear에 선언해준다.
     override func viewWillAppear(_ animated: Bool) {
@@ -20,6 +41,7 @@ class GraphViewController: UIViewController {
         setRecord()
         updateGraph()
         configureGraph()
+        configureTextField()
     }
     
     //realm을 인스턴스화시켜, 전 데이터를 취득하고 record리스트에 대입하게하고
@@ -62,5 +84,28 @@ class GraphViewController: UIViewController {
         //graphview의 xAixs의 valueFormatter를 titleFormatter로 대체하면 된다.
         graphView.xAxis.valueFormatter = titleFormatter
         
+    }
+    
+    //Textfield를 표현할 수 있는 메소드를 만들어준다.
+    func configureTextField() {
+        //start데이터의 픽커를 만들어줌
+        let startDatePicker = datePicker
+        //end데이터의 픽커를 만들어줌
+        let endDatePicker = datePicker
+        //today는 오늘을 넣어주고
+        let today = Date()
+        //1개월전의 데이터를 pastMonth에 넣어준다. Calendar.current.date의 month를 지정 -1
+        let pastMonth = Calendar.current.date(byAdding: .month, value: -1 ,to: today)!
+        //startdatepicker.date에 pastmonth를
+        startDatePicker.date = pastMonth
+        //enddatepickder.date에 today를 대입하여 1개월을 조회할 수 있게 만들어준다.
+        endDatePicker.date = today
+        //inputview도 그에맞게 넣어주면됨
+        startDateTextField.inputView = startDatePicker
+        endDateTextField.inputView = endDatePicker
+        //textfield에서도 그에맞게 dateFormatt을 하여 string으로 보여줘야한다.
+        startDateTextField.text = dateFormatter.string(from: pastMonth)
+        endDateTextField.text = dateFormatter.string(from: today)
+            
     }
 }
