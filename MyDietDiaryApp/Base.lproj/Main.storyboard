@@ -16,10 +16,25 @@
                     <view key="view" contentMode="scaleToFill" id="MzK-YR-QYC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EYz-Wh-IpA" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="144" width="414" height="569"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ttL-qa-gsb"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EYz-Wh-IpA" firstAttribute="top" secondItem="ttL-qa-gsb" secondAttribute="top" constant="100" id="UlL-K0-vLX"/>
+                            <constraint firstItem="EYz-Wh-IpA" firstAttribute="leading" secondItem="ttL-qa-gsb" secondAttribute="leading" id="bIy-eJ-Ukf"/>
+                            <constraint firstItem="ttL-qa-gsb" firstAttribute="bottom" secondItem="EYz-Wh-IpA" secondAttribute="bottom" constant="100" id="gF5-MV-sfj"/>
+                            <constraint firstItem="ttL-qa-gsb" firstAttribute="trailing" secondItem="EYz-Wh-IpA" secondAttribute="trailing" id="u1a-lz-Lqb"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="eY1-cR-cFw"/>
+                    <connections>
+                        <outlet property="graphView" destination="EYz-Wh-IpA" id="2p9-el-HMu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z50-wW-icY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,8 +113,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
