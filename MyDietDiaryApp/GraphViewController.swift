@@ -52,6 +52,19 @@ class GraphViewController: UIViewController {
         Array(realm.objects(WeightRecored.self))
         result.sort(by: { $0.date < $1.date })
         recordList = result
+        
+        //개시일과 종료일의 텍스트필드의 텍스트를 취득한다
+        if let startDateText = startDateTextField.text,
+           let endDateText = endDateTextField.text,
+        //startDate에 dateformatter로 뽑은 startdatetext를 넣어준다.
+           let startDate = dateFormatter.date(from: startDateText),
+           let endDate = dateFormatter.date(from: endDateText) {
+            var filterRecord = Array(realm.objects(WeightRecored.self)
+                                        .filter("date BETWEEN { %@, %@ }", startDate, endDate))
+            //sort
+            filterRecord.sort(by: { $0.date > $1.date })
+            recordList = filterRecord
+        }
     }
     
     //그래프를 나타낸다
@@ -86,6 +99,26 @@ class GraphViewController: UIViewController {
         
     }
     
+    //done 툴바를 변수로 선언해준다.
+    var toolBar: UIToolbar {
+        //툴바의 사이즈
+        let toolBarRec = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35)
+        //툴바의 프레임을 넣어주고
+        let toolBar = UIToolbar(frame: toolBarRec)
+        //done을 uibarbuttonitem에 넣어준다.
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDone))
+        //툴바에 아이템을 셋팅해주고 리턴
+        toolBar.setItems([doneItem], animated: true)
+        return toolBar
+    }
+    //done을 클릭하면 키보드가 닫힌다.
+    @objc func didTapDone() {
+        //키보드가 닫히는순간 record와 updategraph를 업데이트 해줘야하므로 아래의 두 메소드를.. 넣자
+        setRecord()
+        updateGraph()
+        view.endEditing(true)
+    }
+    
     //Textfield를 표현할 수 있는 메소드를 만들어준다.
     func configureTextField() {
         //start데이터의 픽커를 만들어줌
@@ -106,6 +139,21 @@ class GraphViewController: UIViewController {
         //textfield에서도 그에맞게 dateFormatt을 하여 string으로 보여줘야한다.
         startDateTextField.text = dateFormatter.string(from: pastMonth)
         endDateTextField.text = dateFormatter.string(from: today)
-            
+        startDateTextField.inputAccessoryView = toolBar
+        endDateTextField.inputAccessoryView = toolBar
+        
+        //func configureTextField()임
+        //datepicker를 addtarget으로 start,end모두 추가해준다.
+        startDatePicker.addTarget(self, action: #selector(didChangeStartDate), for: .valueChanged)
+        endDatePicker.addTarget(self, action: #selector(didChangeEndDate), for: .valueChanged)
+    }
+    
+    //startDateTextfield 텍스트에 데이터 포맷으로 스트링값을 넣어준다
+    @objc func didChangeStartDate(picker: UIDatePicker) {
+        startDateTextField.text = dateFormatter.string(from: picker.date)
+    }
+    
+    @objc func didChangeEndDate(picker: UIDatePicker) {
+        endDateTextField.text = dateFormatter.string(from: picker.date)
     }
 }

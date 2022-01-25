@@ -37,6 +37,8 @@ class CalenderViewController: UIViewController {
         
     }
     
+   
+    
     func transitionToDeitorView(with record: WeightRecored? = nil){
         let storyboard = UIStoryboard.init(name: "EditorViewController", bundle: nil)
         guard let editorViewController =
